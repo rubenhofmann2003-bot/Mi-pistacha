@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi pistachita ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+    --fondo: #fff7f5;
+    --rosa: #d99aa6;
+    --oscuro: #783e50;
+    --dorado: #bd9b65;
+    --texto: #59424a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, #f9e1e3, transparent 40%),
+        linear-gradient(135deg, #fff8f5, #f9e8e8);
+    color: var(--texto);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+}
+
+.corazon {
+    position: fixed;
+    bottom: -30px;
+    color: #f4a340;
+    opacity: .65;
+    pointer-events: none;
+    animation: flotar 9s linear forwards;
+    z-index: 0;
+}
+
+@keyframes flotar {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.contenedor {
+    position: relative;
+    z-index: 1;
+    width: min(700px, 92%);
+    min-height: 90vh;
+    margin: 5vh auto;
+    padding: 35px 25px;
+    background: rgba(255,255,255,.78);
+    border: 1px solid #e6c9bf;
+    border-radius: 18px;
+    box-shadow: 0 15px 60px #8d52621a;
+    text-align: center;
+}
+
+.pagina {
+    display: none;
+    animation: aparecer .8s ease;
+}
+
+.pagina.activa {
+    display: block;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--oscuro);
+    font-weight: 400;
+}
+
+h1 {
+    font-size: clamp(30px, 7vw, 44px);
+    font-style: italic;
+}
+
+h2 {
+    font-size: 29px;
+}
+
+.script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 45px;
+    color: var(--oscuro);
+}
+
+.subtitulo {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--dorado);
+    text-transform: uppercase;
+}
+
+.separador {
+    color: var(--dorado);
+    letter-spacing: 10px;
+    margin: 25px 0;
+}
+
+.boton {
+    background: linear-gradient(135deg, #c7798c, #a94e68);
+    border: 1px solid #d8a6a9;
+    border-radius: 30px;
+    padding: 15px 28px;
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .3s;
+    margin: 12px 5px;
+    box-shadow: 0 5px 15px #9b52622a;
+}
+
+.boton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px #9b526244;
+}
+
+.boton.secundario {
+    background: transparent;
+    color: var(--oscuro);
+}
+
+/* SOBRE */
+
+.sobre-zona {
+    margin: 55px auto 35px;
+    width: 260px;
+    height: 185px;
+    position: relative;
+    perspective: 700px;
+}
+
+.sobre {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    background: #d99aa6;
+    border-radius: 5px;
+    box-shadow: 0 12px 25px #783e5030;
+}
+
+.sobre::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #edbdc3;
+    clip-path: polygon(0 0, 50% 58%, 100% 0);
+    z-index: 3;
+    transform-origin: top;
+    transition: transform 1s;
+}
+
+.sobre.abierto::before {
+    transform: rotateX(180deg);
+}
+
+.solapa {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-bottom: 100px solid #f0cbd0;
+    z-index: 2;
+}
+
+.carta-mini {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    height: 145px;
+    bottom: 15px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: var(--oscuro);
+    transition: transform 1s;
+}
+
+.carta-mini.subiendo {
+    transform: translateY(-110px);
+}
+
+.sello {
+    position: absolute;
+    z-index: 4;
+    left: calc(50% - 22px);
+    top: 65%;
+    width: 44px;
+    height: 44px;
+    background: #a94e68;
+    border: 2px solid var(--dorado);
+    color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+}
+
+/* CARTA */
+
+.papel {
+    background: #fffdfb;
+    border: 1px solid #dfc6aa;
+    padding: 30px;
+    margin: 25px auto;
+    text-align: left;
+    box-shadow: 0 5px 20px #783e5010;
+    line-height: 1.9;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+}
+
+.firma-amor {
+    font-family: 'Great Vibes', cursive;
+    color: var(--oscuro);
+    font-size: 34px;
+    text-align: right;
+}
+
+/* INVITACIÓN */
+
+.detalle {
+    background: #fffdfb;
+    border: 1px solid #dfc6aa;
+    padding: 30px 20px;
+    margin: 25px auto;
+    line-height: 2;
+}
+
+.detalle p {
+    font-size: 14px;
+}
+
+.frase {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--oscuro);
+    line-height: 1.6;
+}
+
+/* FIRMA */
+
+#firma {
+    display: block;
+    width: 100%;
+    height: 170px;
+    background: #fffdfb;
+    border: 1px solid #d8b9a6;
+    border-radius: 8px;
+    touch-action: none;
+    cursor: crosshair;
+    margin: 20px 0;
+}
+
+.nota {
+    font-size: 11px;
+    color: #967d82;
+}
+
+.final-corazon {
+    font-size: 70px;
+    color: #f4a340;
+    animation: latido 1.5s infinite;
+}
+
+@keyframes latido {
+    50% { transform: scale(1.15); }
+}
+
+@media(max-width: 500px) {
+    .contenedor {
+        padding: 25px 16px;
+    }
+    .papel {
+        padding: 20px;
+    }
+    .script {
+        font-size: 38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- PÁGINA 1: SOBRE -->
+
+<section class="pagina activa" id="p1">
+
+    <div class="subtitulo">Una sorpresa especial</div>
+
+    <h1>Para mi pistachita</h1>
+
+    <p class="frase">
+        Hay algo que llevo en el corazón
+        y quiero compartir contigo...
+    </p>
+
+    <div class="sobre-zona">
+        <div class="carta-mini" id="cartaMini">
+            Para ti, mi amor ♥
+        </div>
+
+        <div class="sobre" id="sobre">
+            <div class="solapa"></div>
+            <div class="sello">♥</div>
+        </div>
+    </div>
+
+    <p class="nota">Una carta escrita especialmente para ti.</p>
+
+    <button class="boton" onclick="abrirSobre()">
+        ABRIR MI CARTA 💌
+    </button>
+
+</section>
+
+
+<!-- PÁGINA 2: CARTA -->
+
+<section class="pagina" id="p2">
+
+    <div class="subtitulo">Con todo mi amor</div>
+
+    <h1>Mi querida pistachita...</h1>
+
+    <div class="separador">✦ ♥ ✦</div>
+
+    <div class="papel">
+
+        Mi amor:
+
+        <br><br>
+
+        No sé si te digo suficientes veces lo
+        muchísimo que significas para mí,
+        pero hoy quiero recordártelo de una
+        manera especial.
+
+        <br><br>
+
+        Desde que llegaste a mi vida,
+        muchas cosas tienen otro color.
+        Me haces sonreír, me haces feliz
+        y consigues que hasta los momentos
+        más sencillos sean especiales.
+
+        <br><br>
+
+        No quiero solamente compartir contigo
+        los días bonitos. Quiero estar también
+        en los difíciles, apoyarte, escucharte,
+        abrazarte y recordarte que nunca
+        tendrás que enfrentarte sola a todo.
+
+        <br><br>
+
+        <strong>
+        Eres lo mejor que me ha pasado,
+        mi pistachita.
+        </strong>
+
+        <br><br>
+
+        Por eso he preparado esta pequeña
+        sorpresa. No es solamente una cita:
+        es una forma de decirte que quiero
+        seguir eligiéndote cada día.
+
+        <br><br>
+
+        <div class="firma-amor">
+            Con todo mi corazón ♥
+        </div>
+
+    </div>
+
+    <p class="frase">¿Me acompañas en esta pequeña aventura?</p>
+
+    <button class="boton" onclick="irPagina(3)">
+        SÍ, QUIERO DESCUBRIRLA ❤️
+    </button>
+
+</section>
+
+
+<!-- PÁGINA 3: CENA -->
+
+<section class="pagina" id="p3">
+
+    <div class="subtitulo">Nuestra invitación</div>
+
+    <h1>Una noche para nosotros</h1>
+
+    <div class="separador">✦ ♥ ✦</div>
+
+    <div class="detalle">
+
+        <div class="script">Cena romántica</div>
+
+        <p><strong>♡ INVITADA:</strong><br>
+        Mi pistachita</p>
+
+        <p><strong>♡ FECHA:</strong><br>
+        7 de julio de 2026</p>
+
+        <p><strong>♡ LUGAR:</strong><br>
+        Nosotros.</p>
+
+        <p>
+        Porque mi lugar favorito siempre
+        será a tu lado.
+        </p>
+
+        <p><strong>♡ PLAN:</strong><br>
+        Una cena romántica para dos,
+        llena de cariño, sonrisas y momentos especiales (cuando podamos porque este finde no je).
+        </p>
+
+        <p><strong>♡ OBJETIVO:</strong><br>
+        Estar juntos para toda la vida.
+        </p>
+
+        <div class="separador">✦ ♥ ✦</div>
+
+        <div class="frase">
+            "No quiero una noche perfecta.
+            Quiero una noche contigo, por lo que será perfecta."
+        </div>
+
+    </div>
+
+    <p>Pero antes de comenzar, tenemos un pequeño contrato...</p>
+
+    <button class="boton" onclick="irPagina(4)">
+        CONTINUAR ❤️
+    </button>
+
+</section>
+
+
+<!-- PÁGINA 4: CONTRATO Y FIRMA -->
+
+<section class="pagina" id="p4">
+
+    <div class="subtitulo">Nuestro compromiso</div>
+
+    <h1>Un pequeño contrato de amor</h1>
+
+    <div class="separador">✦ ♥ ✦</div>
+
+    <div class="papel">
+
+        Yo, <strong>Mi pistachita</strong>,
+        acepto esta invitación con todo mi cariño.
+
+        <br><br>
+
+        Prometo disfrutar de nuestra cena,
+        compartir sonrisas, abrazos y crear
+        recuerdos que podamos guardar
+        para siempre.
+
+        <br><br>
+
+        Y aunque esta cita tenga una fecha,
+        mi deseo es que nuestra historia
+        no tenga fecha de caducidad.
+
+        <br><br>
+
+        <strong>OBJETIVO:</strong>
+        Estar juntos para toda la vida. ❤️
+
+    </div>
+
+    <p class="frase">Ahora quiero tu firma, mi amor...</p>
+
+    <p class="nota">
+        Dibuja tu firma con el dedo o con el ratón.
+    </p>
+
+    <canvas id="firma"></canvas>
+
+    <button class="boton secundario" onclick="borrarFirma()">
+        BORRAR FIRMA
+    </button>
+
+    <button class="boton" onclick="confirmarFirma()">
+        FIRMAR Y CONFIRMAR ❤️
+    </button>
+
+</section>
+
+
+<!-- PÁGINA 5: FINAL -->
+
+<section class="pagina" id="p5">
+
+    <div class="subtitulo">Oficialmente...</div>
+
+    <h1>¡Nuestra cita está confirmada!</h1>
+
+    <div class="final-corazon">♥</div>
+
+    <div class="script">Mi pistachita...</div>
+
+    <div class="papel">
+
+        Gracias por aceptar esta pequeña cita.
+
+        <br><br>
+
+        Pero quiero que sepas algo:
+
+        <br><br>
+
+        No quiero solamente una cena contigo.
+
+        Quiero miles de cenas, miles de abrazos,
+        miles de risas y miles de momentos
+        a tu lado.
+
+        <br><br>
+
+        Quiero compartir contigo los sueños,
+        los viajes, las aventuras y hasta
+        los días más normales.
+
+        <br><br>
+
+        Porque eres lo mejor que me ha pasado,
+        mi pistachita.
+
+        <br><br>
+
+        Y si tuviera que volver a elegir,
+        te elegiría a ti una y mil veces.
+
+        <br><br>
+
+        <div class="firma-amor">
+            Te quiero muchísimo. ♥
+        </div>
+
+    </div>
+
+    <div class="separador">♥ ✦ ♥ ✦ ♥</div>
+
+    <p class="frase">
+        Nuestra historia, mi lugar favorito.
+    </p>
+
+</section>
+
+</div>
+
+
+<script>
+
+// CAMBIAR DE PÁGINA
+
+function irPagina(numero) {
+
+    document.querySelectorAll(".pagina").forEach(p => {
+        p.classList.remove("activa");
+    });
+
+    document.getElementById("p" + numero)
+        .classList.add("activa");
+
+    window.scrollTo({top: 0, behavior: "smooth"});
+
+    if (numero === 4) {
+        setTimeout(prepararFirma, 100);
+    }
+}
+
+
+// ANIMAR SOBRE
+
+function abrirSobre() {
+
+    const sobre = document.getElementById("sobre");
+    const carta = document.getElementById("cartaMini");
+
+    sobre.classList.add("abierto");
+
+    setTimeout(() => {
+        carta.classList.add("subiendo");
+    }, 600);
+
+    setTimeout(() => {
+        irPagina(2);
+    }, 1800);
+}
+
+
+// CORAZONES FLOTANTES
+
+function crearCorazon() {
+
+    const corazon = document.createElement("div");
+
+    corazon.className = "corazon";
+    corazon.textContent = Math.random() > 0.5 ? "♥" : "♡";
+
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.fontSize = (15 + Math.random() * 22) + "px";
+    corazon.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => corazon.remove(), 12000);
+}
+
+setInterval(crearCorazon, 900);
+
+
+// SISTEMA DE FIRMA
+
+const canvas = document.getElementById("firma");
+const ctx = canvas.getContext("2d");
+
+let dibujando = false;
+let firmado = false;
+
+function prepararFirma() {
+
+    const rect = canvas.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
+
+    canvas.width = rect.width * ratio;
+    canvas.height = 170 * ratio;
+
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    ctx.strokeStyle = "#783e50";
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+}
+
+function posicion(evento) {
+
+    const rect = canvas.getBoundingClientRect();
+
+    return {
+        x: evento.clientX - rect.left,
+        y: evento.clientY - rect.top
+    };
+}
+
+canvas.addEventListener("pointerdown", evento => {
+
+    dibujando = true;
+    firmado = true;
+
+    canvas.setPointerCapture(evento.pointerId);
+
+    const p = posicion(evento);
+
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+
+});
+
+canvas.addEventListener("pointermove", evento => {
+
+    if (!dibujando) return;
+
+    const p = posicion(evento);
+
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+
+});
+
+canvas.addEventListener("pointerup", () => {
+    dibujando = false;
+});
+
+canvas.addEventListener("pointercancel", () => {
+    dibujando = false;
+});
+
+function borrarFirma() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    firmado = false;
+
+}
+
+function confirmarFirma() {
+
+    if (!firmado) {
+
+        alert("Mi pistachita, primero tienes que firmar ❤️");
+        return;
+
+    }
+
+    irPagina(5);
+
+}
+
+</script>
+
+</body>
+</html>
